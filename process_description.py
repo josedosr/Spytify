@@ -7,6 +7,10 @@ from time import sleep
 import numpy as np
 import pandas as pd
 
+# WordCloud
+from wordcloud import WordCloud
+from PIL import Image
+
 #Librerías para interactuar con Spotify
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -117,6 +121,16 @@ Discover personalized playlists that match your favorite musical genres. Explore
                                                     'track_album_release_date',
                                                     'playlist_name', 
                                                     'playlist_genre']])
+        # Generate wordcloud texts
+        text = " ".join(df_recommendations_cache.explode('track_artists', ignore_index=True)['track_artists'])
+
+        # Transparent Mask
+        mask = np.array(Image.new("RGB", (800, 400), (255, 255, 255)))  # Fondo blanco
+        mask[:, :, 2] = 0  # Establecer canal alfa en 0 para transparencia
+
+        # Apply mask
+        wordcloud = WordCloud(width=2400, height=1200, mode="RGBA", background_color=None, colormap='viridis', mask=mask).generate(text)
+        st.image(wordcloud.to_array(), width=1200)
 
     st.markdown("""After entering your preferences and obtaining Spotify datasets, we move on to the exciting step of launching the clustering model with DBSCAN.
                 \n## Clustering Recommendations""")

@@ -25,6 +25,10 @@ from sklearn.cluster import DBSCAN
 from sklearn.metrics import silhouette_score
 from scipy.spatial.distance import cdist
 
+#WordCloud
+from wordcloud import WordCloud
+from PIL import Image
+
 #Por ver si estas se mantienen
 import requests
 import json
@@ -132,7 +136,17 @@ def main_page():
 
                         st.session_state['df_user_pick'] = df_user_pick
                         st.session_state['df_songs_to_recomend'] = df_songs_to_recomend
+                        
+                        # Generate wordcloud texts
+                        text = " ".join(df_songs_to_recomend.explode('track_artists', ignore_index=True)['track_artists'])
 
+                        # Transparent Mask
+                        mask = np.array(Image.new("RGB", (800, 400), (255, 255, 255)))  # Fondo blanco
+                        mask[:, :, 2] = 0  # Establecer canal alfa en 0 para transparencia
+
+                        # Apply mask
+                        wordcloud = WordCloud(width=2400, height=1200, mode="RGBA", background_color=None, colormap='viridis', mask=mask).generate(text)
+                        st.image(wordcloud.to_array(), width=1200)
 
     with tab2: #Clustering Recommendations
 
