@@ -138,7 +138,7 @@ def download_songs_to_recomend(genres, spotify):
 
             # Si la playlist tiene más de 100 canciones se puede establecer que se llame a la API de Spotify para solicitar más canciones dentro de la playlist
             limit = playlist['tracks']['total'] if playlist['tracks']['total'] < songs_limit else songs_limit
-            for offset in stqdm(range(0,limit,100), desc=f"Loading tracks of {playlist_name}"):
+            for offset in range(0,limit,100):
 
                 songs = spotify.playlist_tracks(playlist_id = playlist_id, limit=songs_limit, offset = offset, market = 'ES')
                 songs = songs['items']

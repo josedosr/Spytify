@@ -12,3 +12,4 @@ spotipy
 bs4
 bokeh==2.4.3
 wordcloud
+PIL
