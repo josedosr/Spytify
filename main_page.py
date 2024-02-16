@@ -262,7 +262,7 @@ def main_page():
 
                 songs_to_playlist_ids = songs_to_playlist(user_pick, songs_to_recomend, combine, songs_number, shuffle)
 
-                playlist_url, playlist_name, number_songs_uploaded = post_playlist(spotify, REDIRECT_URI, USERNAME, songs_to_playlist_ids, name, description)
+                playlist_url, playlist_name, number_songs_uploaded = post_playlist(spotify, REDIRECT_URI, songs_to_playlist_ids, name, description)
 
                 if number_songs_uploaded > 0:
 
