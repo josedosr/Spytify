@@ -1,0 +1,13 @@
+numpy
+pandas
+streamlit
+stqdm
+seaborn
+requests
+pillow
+plotly
+scikit-learn
+scipy
+spotipy
+bs4
+bokeh==2.4.3
