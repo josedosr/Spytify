@@ -411,7 +411,6 @@ def songs_to_playlist(user_pick, songs_to_recomend, combine, songs_number, shuff
 
 def post_playlist(spotify,
                   REDIRECT_URI,
-                  USERNAME,
                   songs_to_playlist, 
                   name = '', 
                   description = None):
@@ -427,8 +426,10 @@ def post_playlist(spotify,
         description = f'{description} {datetime.strftime(datetime_now, "%Y")}'
 
     description = f'{description} - playlist created using Spytify🐍 {REDIRECT_URI.split("https://")[-1]}'
+
+    user = spotify.me()['id']
     
-    new_playlist = spotify.user_playlist_create(user = USERNAME, name = name, public = True, collaborative = False, description = description)
+    new_playlist = spotify.user_playlist_create(user = user, name = name, public = True, collaborative = False, description = description)
 
     playlist_id = new_playlist['id']
     playlist_url = new_playlist['href']
@@ -436,7 +437,7 @@ def post_playlist(spotify,
     batches = list(batch_generator(songs_to_playlist))
 
     for batch in stqdm(batches, desc='Creating your playlist...'):
-        spotify.user_playlist_add_tracks(USERNAME, playlist_id, batch)
+        spotify.user_playlist_add_tracks(user, playlist_id, batch)
 
     return playlist_url, name, len(songs_to_playlist)
 

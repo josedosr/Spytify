@@ -70,7 +70,7 @@ def create_playlist():
 
                             df_songs_to_playlist, songs_number = get_songs_to_playlist(spotify, items = uploaded_songs_to_playlist, query_type = 'track')
                             songs_to_playlist_ids = songs_to_playlist(None, df_songs_to_playlist, combine = False, songs_number = songs_number, shuffle = True)
-                            playlist_url, playlist_name, number_songs_uploaded = post_playlist(spotify, REDIRECT_URI, USERNAME, songs_to_playlist_ids, name, description)
+                            playlist_url, playlist_name, number_songs_uploaded = post_playlist(spotify, REDIRECT_URI, songs_to_playlist_ids, name, description)
 
                             if number_songs_uploaded > 0:
 
@@ -104,7 +104,7 @@ def create_playlist():
 
                 df_songs_to_playlist, songs_number = get_songs_to_playlist(spotify, items = artists, query_type = 'artist')
                 songs_to_playlist_ids = songs_to_playlist(None, df_songs_to_playlist, combine = False, songs_number = songs_number, shuffle = True)
-                playlist_url, playlist_name, number_songs_uploaded = post_playlist(spotify, REDIRECT_URI, USERNAME, songs_to_playlist_ids, name, description)
+                playlist_url, playlist_name, number_songs_uploaded = post_playlist(spotify, REDIRECT_URI, songs_to_playlist_ids, name, description)
 
                 if number_songs_uploaded > 0:
 
