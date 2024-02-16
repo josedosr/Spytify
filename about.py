@@ -22,10 +22,10 @@ José is our coding rockstar!🤘🏽 With undeniable talent and skills, top-not
                 
 Patricia is our wizard of creativity, transforming our ideas with vibrant colors and captivating design, making our team stand out in style! :art::rainbow:
 
-## Pamela Jael
+## Pamela Colman
 
 - LinkedIn: [Pamela J. Colman V.](https://www.linkedin.com/in/pamela-j-colman-v/)
-- GitHub: [Name on GitHub](link_to_github_profile_3)
+- GitHub: [Pamela Colman - pamve](https://github.com/pamve)
 - Email: [pamvecol@gmail.com](mailto:pamvecol@gmail.com)
                 
 Pamela is our data guru, providing brilliant insights and in-depth analyses that guide our team's success, turning data into impactful decisions! :chart_with_upwards_trend::bulb:
