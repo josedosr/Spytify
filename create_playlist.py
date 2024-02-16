@@ -33,6 +33,16 @@ def create_playlist():
     tab1, tab2 = st.tabs(['Your Playlist from .csv', 'Your Playlist from Artists input'])
 
     with tab1:
+        st.write('You can download an example file with the valid CSV structure with the button below.')
+        csv = get_template_df()
+
+        st.download_button(
+            label="Download CSV template",
+            data=csv,
+            file_name='playlist.csv',
+            mime='text/csv',
+        )
+
         st.info('Upload a .csv file in the sidebar')
 
         st.session_state['csv'] = True
@@ -110,12 +120,12 @@ def create_playlist():
 
                     success_playlist(playlist_url, playlist_name, number_songs_uploaded)
 
-                    
 
+def get_template_df():
+    data = {'track_name': ["Un siglo sin tí", "Torero"]}
 
-
-
-
+    df = pd.DataFrame(data, index=None)
+    return df.to_csv(index=False).encode('utf-8')
 
 
 if __name__ == "__create_playlist__":
