@@ -273,7 +273,10 @@ def request_user_pick(spotify, query = 'golden', query_type = 'track', limit = 2
     #Este es el df de las canciones resultado de la búsqueda del usuario        
     df_user_search = pd.DataFrame(results, columns = ['track_id', 'track_name', 'track_artists', 'track_popularity', 'preview', 'image'])
 
-    songs_to_query = df_user_search['track_id'].to_list()
+    # songs_to_query = df_user_search['track_id'].to_list()
+    songs_to_query = df_user_search['track_id'].dropna().astype(str)
+    songs_to_query = [tid for tid in songs_to_query if len(tid) == 22 and tid.isalnum()]
+
 
     user_pick_songs_audio_features = []
 
